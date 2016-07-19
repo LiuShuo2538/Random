@@ -14,6 +14,11 @@ public class LicenceFilterAlgorithm {
         if (value instanceof byte[] )return value;
         String str = value+"";
         str = str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         if (str.length()!=15)return value;
         //\u4E0D\u5141\u8BB8\u542B\u6709\u7A7A\u683C\uFF08\u8BC1\u4EF6\u542B\u6709\u7A7A\u683C\uFF0C\u76F4\u63A5\u8FD4\u56DE\u4E0D\u505A\u6E05\u6D17\uFF09
         if (str.contains(" ")) return value;
@@ -102,6 +107,9 @@ public class LicenceFilterAlgorithm {
             }
         }
         String s = new1to14 + newStr4;
+        if (isSuangYin == 1){
+            s = "\"" + s +"\"";
+        }
         if(value instanceof BigDecimal){
             return new BigDecimal(s);
         }else if(value instanceof Long){

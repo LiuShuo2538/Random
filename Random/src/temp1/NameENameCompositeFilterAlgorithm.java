@@ -12,6 +12,11 @@ public class NameENameCompositeFilterAlgorithm {
         if (value==null||value.equals("null")||value.equals("")) return "";
         String str = value+"";
         str = str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         if (str.length()<2)return value;
         String salt = key + "";
         String saltok = salt.replace(" ", "");
@@ -173,7 +178,10 @@ public class NameENameCompositeFilterAlgorithm {
             for (int i = 0; i < arrStr.length; i++) {
                 newName += arrStr[i];
             }
-
+            //--------------------------------------------------------return
+            if (isSuangYin == 1){
+                newName = "\"" + newName +"\"";
+            }
             return newName;
         }else{
 
@@ -331,6 +339,10 @@ public class NameENameCompositeFilterAlgorithm {
                 for (int i = 0; i < nameArray.length; i++) {
                     newName += nameArray[i];
                 }
+            }
+            //--------------------------------------------------------return
+            if (isSuangYin == 1){
+                newName = "\"" + newName +"\"";
             }
             return newName;
         }
