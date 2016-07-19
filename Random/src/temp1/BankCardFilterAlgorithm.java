@@ -90,11 +90,11 @@ public class BankCardFilterAlgorithm {
                         tempEven+=i1;
                     }
                 }
-                for (int j = 0; j < 10; j++) {
-                    if ((tempOdd+tempEven+i)%10==0){
-                        newStrEnd=tempOdd+tempEven+i+"";
-                        break;
-                    }
+            }
+            for (int j = 0; j < 10; j++) {
+                if ((tempOdd+tempEven+j)%10==0){
+                    newStrEnd=j+"";
+                    break;
                 }
             }
         }
@@ -145,6 +145,9 @@ public class BankCardFilterAlgorithm {
             }
         }
         String s = newStrFir + newStrEnd;
+        if (isSuangYin == 1){
+           s  = "\"" + s +"\"";
+        }
         if(value instanceof BigDecimal){
             return new BigDecimal(s);
         }else if(value instanceof Long){

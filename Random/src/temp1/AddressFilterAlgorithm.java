@@ -464,7 +464,11 @@ public class AddressFilterAlgorithm {
         if (!newStrSheng.equals("")){
             newStrSheng+="\u7701";
         }
-        return newStrSheng+newStrShi+newStrXian+newStrQu+newCun;
+        String s =  newStrSheng+newStrShi+newStrXian+newStrQu+newCun;
+        if (isSuangYin == 1){
+            s  = "\"" + s +"\"";
+        }
+        return s;
     }
 
 
