@@ -16,6 +16,11 @@ public class BankCardFilterAlgorithm {
         String str = value+"";
         //\u4E0D\u5141\u8BB8\u542B\u6709\u7A7A\u683C\uFF08\u8BC1\u4EF6\u542B\u6709\u7A7A\u683C\uFF0C\u76F4\u63A5\u8FD4\u56DE\u4E0D\u505A\u6E05\u6D17\uFF09
         if (str.contains(" ")) return value;
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         String salt = key + "";
         String saltok = salt.replace(" ", "");
         //\u76D0\u503Chash

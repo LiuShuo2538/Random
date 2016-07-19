@@ -14,6 +14,11 @@ public class FixedTelephoneFilterAlgorithm {
         if (value == null || value.equals("null") || value.equals("")) return "";
         String str = value + "";
         str = str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         //\u9A8C\u8BC1\u662F\u5426\u6570\u5B57
         Pattern numRegex = Pattern.compile("^([0-9]{11})$");
         if (!numRegex.matcher(str).matches()) return value;
@@ -57,6 +62,9 @@ public class FixedTelephoneFilterAlgorithm {
         }else return value;
 
         String s = newStr1+newStr2;
+        if (isSuangYin == 1){
+            s = "\"" + s +"\"";
+        }
         if(value instanceof BigDecimal){
             return new BigDecimal(s);
         }else if(value instanceof Long){

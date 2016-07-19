@@ -10,6 +10,11 @@ public class AddressFilterAlgorithm {
         if (value==null||value.equals("null")||value.equals("")) return "";
         String str = value+"";
         str = str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         if (str.length()<4) return value;
         String salt = key + "";
         String saltok = salt.replace(" ", "");

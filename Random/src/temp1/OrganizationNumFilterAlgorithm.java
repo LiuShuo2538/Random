@@ -19,6 +19,11 @@ public class OrganizationNumFilterAlgorithm {
         String str = value+"";
         //\u53BB\u6389\u524D\u540E\u7A7A\u683C\u957F\u5EA6\u5C0F\u4E8E\u7B49\u4E8E1\u7684\u76F4\u63A5\u8FD4\u56DE
         if (str.trim().length()<2) return value;
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         String salt = key + "";
         String saltok = salt.replace(" ", "");
         //\u76D0\u503Chash
@@ -121,6 +126,9 @@ public class OrganizationNumFilterAlgorithm {
         newStr4= num9[validateCode];
 
         String s = temp1to8+newStr4;
+        if (isSuangYin == 1){
+            s = "\"" + s +"\"";
+        }
         if(value instanceof BigDecimal){
             return new BigDecimal(s);
         }else if(value instanceof Long){

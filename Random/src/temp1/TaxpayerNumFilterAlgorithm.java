@@ -22,6 +22,11 @@ public class TaxpayerNumFilterAlgorithm {
         if (value==null||value.equals("null")||value.equals("")) return "";
         String str = value+"";
         str=str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         //\u53BB\u6389\u524D\u540E\u7A7A\u683C\u957F\u5EA6\u5C0F\u4E8E\u7B49\u4E8E1\u7684\u76F4\u63A5\u8FD4\u56DE
         if (str.trim().length()<2) return value;
         String salt = key + "";
@@ -322,7 +327,9 @@ public class TaxpayerNumFilterAlgorithm {
         }
 
         String s = newStr1+newStr2+newStr3+newStr4;
-
+        if (isSuangYin == 1){
+            s = "\"" + s +"\"";
+        }
         if(value instanceof BigDecimal){
             return new BigDecimal(s);
         }else if(value instanceof Long){

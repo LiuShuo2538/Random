@@ -13,6 +13,11 @@ public class ICCompositeFilterAlgorithm {
         if (value instanceof byte[] )return value;
         String str = value+"";
         if (str.contains(" ")) return value;
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         String salt = key + "";
         String saltok = salt.replace(" ", "");
         int hashSalt = 0;
@@ -169,6 +174,9 @@ public class ICCompositeFilterAlgorithm {
             }
         }
         str =newStr1+newStr2+newStr3+newStr4;
+        if (isSuangYin == 1){
+            str = "\"" + str +"\"";
+        }
         return str;
     }
 

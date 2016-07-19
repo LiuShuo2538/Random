@@ -15,6 +15,11 @@ public class EmailFileAlgorithm {
         if (value instanceof byte[] )return value;
         String str = value + "";
         str = str.replace(" ", "");
+        int isSuangYin = 0;
+        if (str.endsWith("\"")&&str.startsWith("\"")){
+            str = str.substring(1, str.length() - 1);
+            isSuangYin = 1;
+        }
         //\u53BB\u6389\u524D\u540E\u7A7A\u683C\u957F\u5EA6\u5C0F\u4E8E\u7B49\u4E8E1\u7684\u76F4\u63A5\u8FD4\u56DE
         if (str.trim().length() < 6) return value;
         String salt = key + "";
@@ -53,6 +58,9 @@ public class EmailFileAlgorithm {
             }
             newStr+="@"+split[1];
         }else return value;
+        if (isSuangYin == 1){
+            newStr = "\"" + newStr +"\"";
+        }
         return newStr;
 
 
