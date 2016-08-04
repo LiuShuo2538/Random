@@ -265,7 +265,7 @@ public class AddressFilterAlgorithm {
         String[] noChange1 = {"古", "江", "街", "款", "初", "班", "饭", "期", "分", "大", "附", "北", "站", "左", "屯", "坊", "巷", "城", "省", "厂", "四", "乡", "九", "院", "路", "县", "区", "园", "室", "镇", "面", "桥", "堍", "层", "内", "幢", "洲", "州", "厦", "家", "楼", "南", "侧", "店", "前", "部", "弄", "旁", "组", "庄", "浜", "十", "户", "中", "社", "荡", "八", "市", "队", "六", "栋", "后", "五", "东", "号", "村", "右", "第", "苑", "三", "西", "小", "座", "环", "寺", "一", "七", "二", "口", "委", "道", "F", "~", "！", "@", "#", "￥", "%", "…", "^", "……", "&", "*", "（", "）", "—", "—", "+", "}", "{", "：", "“", "》", "《", "？", "-", "(", ")", ".", "、", ","
 
         };
-        String[] noChange2 = {"中学", "小学", "学校", "高中", "大学", "增补", "个人", "代发", "电声", "浙江", "针织", "童装", "旅游", "塑料", "回收", "宾馆", "装饰", "工资", "技校", "勘察", "地质", "保险", "物业", "安装", "实验", "纺织", "景观", "超市", "宾馆", "商城", "电视", "建设", "宁夏", "核算", "汽车", "流通", "木业", "餐饮", "家私", "农民", "酒店", "水果", "化工", "支行", "银川", "维修", "交通", "发展", "银行", "器材", "市场", "实业", "机械", "工贸", "二手", "批发", "食堂", "车行", "集中", "机电", "宿舍", "小额", "大街", "电器", "制造", "固原", "工程", "专业", "幼儿", "农场", "集团", "综合", "社区", "科技", "瓜果", "清真", "码头", "园区", "休闲", "粮油", "商行", "管理", "股份", "商业", "文化", "传播", "中卫", "广播", "酒楼", "单元", "中心", "印刷", "开发", "防水", "吴忠", "电子", "资金", "大修", "责任", "建材", "幕墙", "印务", "医疗", "嘉兴", "农村", "有限", "物资", "器械", "珠宝", "电力", "资产", "贷款", "苗木", "办公", "服装", "服务", "花园", "村级", "种植", "公司", "行政", "咨询", "养殖", "保洁", "小区", "设备", "天窗", "街道", "园林", "公路", "节能", "销售", "贸易", "商贸", "连锁", "胶粘", "制品", "路桥", "矿业", "南寺", "工业", "陶瓷", "农业", "果蔬"
+        String[] noChange2 = {"河北", "衡水","中学", "小学", "学校", "高中", "大学", "增补", "个人", "代发", "电声", "浙江", "针织", "童装", "旅游", "塑料", "回收", "宾馆", "装饰", "工资", "技校", "勘察", "地质", "保险", "物业", "安装", "实验", "纺织", "景观", "超市", "宾馆", "商城", "电视", "建设", "宁夏", "核算", "汽车", "流通", "木业", "餐饮", "家私", "农民", "酒店", "水果", "化工", "支行", "银川", "维修", "交通", "发展", "银行", "器材", "市场", "实业", "机械", "工贸", "二手", "批发", "食堂", "车行", "集中", "机电", "宿舍", "小额", "大街", "电器", "制造", "固原", "工程", "专业", "幼儿", "农场", "集团", "综合", "社区", "科技", "瓜果", "清真", "码头", "园区", "休闲", "粮油", "商行", "管理", "股份", "商业", "文化", "传播", "中卫", "广播", "酒楼", "单元", "中心", "印刷", "开发", "防水", "吴忠", "电子", "资金", "大修", "责任", "建材", "幕墙", "印务", "医疗", "嘉兴", "农村", "有限", "物资", "器械", "珠宝", "电力", "资产", "贷款", "苗木", "办公", "服装", "服务", "花园", "村级", "种植", "公司", "行政", "咨询", "养殖", "保洁", "小区", "设备", "天窗", "街道", "园林", "公路", "节能", "销售", "贸易", "商贸", "连锁", "胶粘", "制品", "路桥", "矿业", "南寺", "工业", "陶瓷", "农业", "果蔬"
 
         };
 //留着以后有可能出现3个字的判断
@@ -313,7 +313,10 @@ public class AddressFilterAlgorithm {
                 type = 2;
             } else {
                 String[] arryTemp = shi[hash1 % (shi.length - 1)];
-                if (arrStr1[0].equals("日照")) {
+                if (arrStr1[0].equals("山东日照")){
+                    newStrSheng = "河北";
+                    newStrShi = "衡水市";
+                }else if (arrStr1[0].equals("日照")) {
                     newStrShi = "衡水市";
                 } else {
                     newStrShi = arryTemp[hash1 % (arryTemp.length - 1)];
@@ -360,16 +363,43 @@ public class AddressFilterAlgorithm {
                         if (arrStr1.length < 2) return value;
                         hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
 
+                        if (type == 0) {
+                            newStrShi = ((String[]) shengTOshi.get(provinces[hash1 % provinces.length]))[hash1 % (((String[]) shengTOshi.get(provinces[hash1 % provinces.length])).length - 1)];
+                            newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                            newStrShi = "";
+                            if (arrStr1[0].contains("山东")){
+                                newStrSheng = "河北";
+                            }
+                            if (arrStr1[0].contains("日照")){
+                                newStrShi = "衡水";
+                            }
+
+                        }
                         if (type == 1) {
                             newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
                             newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
                             newStrShi = "";
+                            if (arrStr1[0].contains("山东")){
+                                newStrSheng = "河北";
+                            }
+                            if (arrStr1[0].contains("日照")){
+                                newStrShi = "衡水";
+                            }
                         }
                         if (type == 2) {
                             newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
                         }
                         if (type == 3) {
                             newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                        }
+
+                    }else {
+                        if (arrStr1xiaoqu[0].contains("山东日照")){
+                            tem = arrStr1xiaoqu[0].replace("山东日照","河北衡水");
+                        }else if (arrStr1xiaoqu[0].contains("山东")){
+                            tem =  arrStr1xiaoqu[0].replace("山东","河北");
+                        }else if (arrStr1xiaoqu[0].contains("日照")){
+                            tem =  arrStr1xiaoqu[0].replace("日照","衡水");
                         }
 
                     }

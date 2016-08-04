@@ -8,7 +8,7 @@ package ShanDong;
  */
 public class Test2 {
     public static void main(String[] args) throws Exception {
-        Object o = AddressFilterAlgorithm.getModelAddress("山东日照龙12镇xx村！@社--组", null);
+        Object o = AddressFilterAlgorithm.getModelAddress("山东日照市123区234小区A座77室 ", null);
         System.out.println(o);
     }
 }
