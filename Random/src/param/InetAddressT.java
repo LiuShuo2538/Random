@@ -14,7 +14,7 @@ import java.net.UnknownHostException;
  *      4.两个常用的方法：getHostName():获取域名/主机名
  * 				getHostAddress():获取主机的ip地址
  *      5.本地的回路地址：127.0.0.1
- *      三、端口号：用于区分一台主机上不同的进程。
+ *      三、端口号：用于区分一台主机上不同的进程。0--65535
  *      常见的端口号： oracle:1521  mysql:3306 http:80  tomcat:8080 ...
  *
  * * Created by ${LiuShuo} on 8/16/2016.
