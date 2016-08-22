@@ -1,12 +1,10 @@
 package com.wise.version1;
 
-import java.util.Arrays;
-
 /**
  * 姓名、公司名、地址混合脱敏
  * Created by ${LiuShuo} on 8/17/2016.
  */
-public class SanFenGuiYuanQi {
+public class SHANDONGSanFenGuiYuanQi {
 
     public static Object getModelNameAddr(Object value, Object key) {
 
@@ -55,6 +53,7 @@ public class SanFenGuiYuanQi {
                 "疏","冒","浑","挚","胶","随","高","皋","原","种","练","弥","仓","眭","蹇","覃","阿","门","恽","来","綦","召","仪","风","介","巨",
                 "木","京","狐","郇","虎","枚","抗","达","杞","苌","折","麦","庆","过","竹","端","鲜","皇","亓","老","是","秘","畅","邝","还","宾",
                 "闾","辜","纵","侴"};
+
         //单姓（删除不常见姓氏 PS:删了好多）
         String[] laName = {"赵", "钱", "孙", "李", "周", "吴", "郑", "王", "冯", "陈", "蒋", "沈", "韩", "杨", "朱", "秦", "许", "张", "孔", "曹", "严", "华", "金", "魏", "姜", "彭", "鲁", "马", "袁", "柳", "史", "唐", "薛", "罗", "齐", "元", "孟", "黄", "尹", "邵", "毛", "宋", "庞", "熊", "纪", "董", "梁", "杜", "阮", "贾", "江", "郭", "林", "钟", "徐", "高", "夏", "蔡", "田", "胡", "霍", "卢", "丁", "邓", "洪", "包", "石", "崔", "程", "陆", "焦", "刘", "叶", "申", "牛", "习", "关", "岳", "楚", "佟", "高"};
         //名库
@@ -285,9 +284,11 @@ public class SanFenGuiYuanQi {
         //没有省
         String[][] shi = {jilin, guangdong, shandong, henan, hebei, sichuan};
 
+//山东--河北；日照--衡水
+        String[] change2 = {"山东", "日照", "青岛", "济南", "济宁", "临沂", "菏泽", "烟台", "淄博", "泰安", "潍坊", "威海", "滨州", "东营", "聊城", "德州", "莱芜", "枣庄"};
 
 //不做清洗的字符串
-        String[] noChange1 = {"古", "江", "街", "款", "初", "班", "饭", "期", "分", "大", "附", "北", "站", "左", "屯", "坊", "巷", "城", "省", "厂", "四", "乡", "九", "院", "路", "县", "区", "园", "室", "镇", "面", "桥", "堍", "层", "内", "幢", "洲", "州", "厦", "家", "楼", "南", "侧", "店", "前", "部", "弄", "旁", "组", "庄", "浜", "十", "户", "中", "社", "荡", "八", "市", "队", "六", "栋", "后", "五", "东", "号", "村", "右", "第", "苑", "三", "西", "小", "座", "环", "寺", "一", "七", "二", "口", "委", "道", "F", "~", "！", "@", "#", "￥", "%", "…", "^", "……", "&", "*", "（", "）", "—", "—", "+", "}", "{", "：", "“", "》", "《", "？", "-", "(", ")", "."
+        String[] noChange1 = {"局","古", "江", "街", "款", "初", "班", "饭", "期", "分", "大", "附", "北", "站", "左", "屯", "坊", "巷", "城", "省", "厂", "四", "乡", "九", "院", "路", "县", "区", "园", "室", "镇", "面", "桥", "堍", "层", "内", "幢", "洲", "州", "厦", "家", "楼", "南", "侧", "店", "前", "部", "弄", "旁", "组", "庄", "浜", "十", "户", "中", "社", "荡", "八", "市", "队", "六", "栋", "后", "五", "东", "号", "村", "右", "第", "苑", "三", "西", "小", "座", "环", "寺", "一", "七", "二", "口", "委", "道", "F", "~", "！", "@", "#", "￥", "%", "…", "^", "……", "&", "*", "（", "）", "—", "—", "+", "}", "{", "：", "“", "》", "《", "？", "-", "(", ")", "."
 
         };
         String[] noChange2 = {"中国","童装","商城","党校","代发","交易","建设","房间","网络","汽车","木业","家私","酒店","水果","勘察","工资","保险","银川","维修","交通","国资","工贸","实业","二手","分行","批发","安装","保护","食堂","生育","旅游","宿舍","小额","电器","组织","计划","工程","监督","实验","农场","孵化","卫生","综合","科技","执法","运营","清真","码头","财政","粮油","管理","分局","商业","文化","广播","单元","印刷","开发","示范","吴忠","塑料","装饰","大修","个人","小学","建材","医疗","联合","技校","嘉兴","人民","学校","车队","资产","贷款","政府","服务","种植","中学","行政","工委","城管","地质","支队","监测","小区","设备","天窗","街道","公路","物业","胶粘","南寺","财务","精神","果蔬","机构","景观","地籍","超市","浙江","宾馆","电声","电视","宁夏","核算","流通","海洋","餐饮","农民","编制","化工","支行","促进","国土","发展","河北","器材","银行","市场","机械","疾病","车行","集中","外事","政协","机电","环境","大街","监察","固原","制造","针织","专业","控制","幼儿","集团","社区","第一","瓜果","环保","纺织","运动","园区","休闲","商行","中共","股份","传播","中卫","酒楼","中心","国际","防水","增补","广电","林业","高中","电子","资金","责任","幕墙","印务","大学","农村","有限","物资","器械","检测","珠宝","电力","苗木","办公","供水","保卫","服装","畜牧","经济","花园","村级","公司","咨询","回收","动物","衡水","养殖","保洁","宣传","园林","节能","销售","贸易","商贸","连锁","制品","挖潜","路桥","矿业","预防","工业","陶瓷","营业","农业"
@@ -329,7 +330,7 @@ public class SanFenGuiYuanQi {
                     break;
                 }
             }
-//判断是否是单姓
+            //判断是否是单姓
             for (int i = 0; i < isName.length; i++) {
                 if (str.startsWith(isName[i])) {
                     isOneName = true;
@@ -372,33 +373,106 @@ public class SanFenGuiYuanQi {
 //获取省
             if (str.contains("省")) {
                 String[] arrStr1 = str.split("省");
-                if (arrStr1.length < 2) return value;
+                if (arrStr1.length < 1) return value;
                 hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
-                newStrSheng = provinces[hash1 % (provinces.length - 1)];
-                str = arrStr1[1];
-                type = 1;
+                if (arrStr1[0].equals("山东")) {
+                    newStrSheng = "河北";
+                } else {
+                    newStrSheng = provinces[hash1 % (provinces.length - 1)];
+                }
+                if (arrStr1.length<2){
+                    str="";
+                }else {
+                    str = arrStr1[1];
+                    type = 1;
+                }
             }
 //获取市
             if (str.contains("市")) {
                 String[] arrStr1 = str.split("市");
-                if (arrStr1.length < 2) return value;
+                if (arrStr1.length < 1) return value;
                 hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
                 if (type == 1) {
-                    newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
+                    if (arrStr1[0].equals("日照") || arrStr1[0].equals("青岛")) {
+                        newStrShi = "衡水市";
+                    } else if (arrStr1[0].equals("济南") || arrStr1[0].equals("济宁")) {
+                        newStrShi = "唐山市";
+                    } else if (arrStr1[0].equals("临沂") || arrStr1[0].equals("菏泽")) {
+                        newStrShi = "保定市";
+                    } else if (arrStr1[0].equals("烟台") || arrStr1[0].equals("淄博")) {
+                        newStrShi = "邯郸市";
+                    } else if (arrStr1[0].equals("泰安") || arrStr1[0].equals("潍坊")) {
+                        newStrShi = "邢台市";
+                    } else if (arrStr1[0].equals("威海") || arrStr1[0].equals("滨州")) {
+                        newStrShi = "沧州市";
+                    } else if (arrStr1[0].equals("东营") || arrStr1[0].equals("聊城")) {
+                        newStrShi = "廊坊市";
+                    } else if (arrStr1[0].equals("德州") || arrStr1[0].equals("莱芜") || arrStr1[0].equals("枣庄")) {
+                        newStrShi = "承德市";
+                    } else {
+                        newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
+                    }
                     type = 2;
                 } else {
                     String[] arryTemp = shi[hash1 % (shi.length - 1)];
-                    newStrShi = arryTemp[hash1 % (arryTemp.length - 1)];
+                    if (arrStr1[0].equals("山东日照") || arrStr1[0].equals("山东青岛")) {
+                        newStrSheng = "河北";
+                        newStrShi = "衡水市";
+                    } else if (arrStr1[0].equals("山东济南") || arrStr1[0].equals("山东济宁")) {
+                        newStrSheng = "河北";
+                        newStrShi = "唐山市";
+                    } else if (arrStr1[0].equals("山东临沂") || arrStr1[0].equals("山东菏泽")) {
+                        newStrSheng = "河北";
+                        newStrShi = "保定市";
+                    } else if (arrStr1[0].equals("山东烟台") || arrStr1[0].equals("山东淄博")) {
+                        newStrSheng = "河北";
+                        newStrShi = "邯郸市";
+                    } else if (arrStr1[0].equals("山东泰安") || arrStr1[0].equals("山东潍坊")) {
+                        newStrSheng = "河北";
+                        newStrShi = "邢台市";
+                    } else if (arrStr1[0].equals("山东威海") || arrStr1[0].equals("山东滨州")) {
+                        newStrSheng = "河北";
+                        newStrShi = "沧州市";
+                    } else if (arrStr1[0].equals("山东东营") || arrStr1[0].equals("山东聊城")) {
+                        newStrSheng = "河北";
+                        newStrShi = "廊坊市";
+                    } else if (arrStr1[0].equals("山东德州") || arrStr1[0].equals("山东莱芜") || arrStr1[0].equals("山东枣庄")) {
+                        newStrSheng = "河北";
+                        newStrShi = "承德市";
+                    } else if (arrStr1[0].equals("日照") || arrStr1[0].equals("青岛")) {
+                        newStrShi = "衡水市";
+                    } else if (arrStr1[0].equals("济南") || arrStr1[0].equals("济宁")) {
+                        newStrShi = "唐山市";
+                    } else if (arrStr1[0].equals("临沂") || arrStr1[0].equals("菏泽")) {
+                        newStrShi = "保定市";
+                    } else if (arrStr1[0].equals("烟台") || arrStr1[0].equals("淄博")) {
+                        newStrShi = "邯郸市";
+                    } else if (arrStr1[0].equals("泰安") || arrStr1[0].equals("潍坊")) {
+                        newStrShi = "邢台市";
+                    } else if (arrStr1[0].equals("威海") || arrStr1[0].equals("滨州")) {
+                        newStrShi = "沧州市";
+                    } else if (arrStr1[0].equals("东营") || arrStr1[0].equals("聊城")) {
+                        newStrShi = "廊坊市";
+                    } else if (arrStr1[0].equals("德州") || arrStr1[0].equals("莱芜") || arrStr1[0].equals("枣庄")) {
+                        newStrShi = "承德市";
+                    } else {
+                        newStrShi = arryTemp[hash1 % (arryTemp.length - 1)];
+                    }
                     type = 3;
                 }
                 str = "";
-                for (int i = 1; i < arrStr1.length; i++) {
-                    str += arrStr1[i] + "市";
+                if (arrStr1.length<2){
+                    str="";
+                }else {
+                    for (int i = 1; i < arrStr1.length; i++) {
+                        str += arrStr1[i] + "市";
+                    }
+                    str = str.substring(0, str.length() - 1);
                 }
-                str = str.substring(0, str.length() - 1);
+
             }
 //-------------------------------------------------------------
-            if (str.contains("县")) {
+            if (str.contains("县")&&!str.endsWith("县")) {
                 String[] arrStr1 = str.split("县");
                 if (arrStr1.length < 2) return value;
                 hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
@@ -420,32 +494,112 @@ public class SanFenGuiYuanQi {
                 }
                 str = arrStr1[1];
             } else if (str.contains("区")) {
+
                 if (str.contains("小区")) {
-                    String[] arrStr1xiaoqu = str.split("小区");
-                    String tem = "";
-                    if (arrStr1xiaoqu[0].contains("区")) {
-                        String[] arrStr1 = str.split("区");
-                        tem = arrStr1[1];
-                        if (arrStr1.length < 2) return value;
-                        hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
-
-                        if (type == 1) {
-                            newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
-                            newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
-                            newStrShi = "";
+                    try {
+                        String[] arrStr1xiaoqu = str.split("小区");
+                        String tem = "";
+                        if (arrStr1xiaoqu[0].contains("区")) {
+                            String[] arrStr1 = str.split("区");
+                            tem = arrStr1[1];
+                            if (arrStr1.length < 2) return value;
+                            hash1 = Math.abs(arrStr1[0].hashCode() + hashSalt);
+                            if (type == 0) {
+                                newStrShi = ((String[]) shengTOshi.get(provinces[hash1 % provinces.length]))[hash1 % (((String[]) shengTOshi.get(provinces[hash1 % provinces.length])).length - 1)];
+                                newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                                newStrShi = "";
+                                if (arrStr1[0].contains("山东")) {
+                                    newStrSheng = "河北";
+                                }
+                                if (arrStr1[0].contains("日照") || arrStr1[0].contains("济宁")) {
+                                    newStrShi = "衡水";
+                                }
+                                if (arrStr1[0].contains("济南") || arrStr1[0].contains("青岛")) {
+                                    newStrShi = "唐山";
+                                }
+                                if (arrStr1[0].contains("临沂") || arrStr1[0].contains("菏泽")) {
+                                    newStrShi = "保定";
+                                }
+                                if (arrStr1[0].contains("烟台") || arrStr1[0].contains("淄博")) {
+                                    newStrShi = "邯郸";
+                                }
+                                if (arrStr1[0].contains("泰安") || arrStr1[0].contains("潍坊")) {
+                                    newStrShi = "邢台";
+                                }
+                                if (arrStr1[0].contains("威海") || arrStr1[0].contains("滨州")) {
+                                    newStrShi = "沧州";
+                                }
+                                if (arrStr1[0].contains("东营") || arrStr1[0].contains("聊城")) {
+                                    newStrShi = "廊坊";
+                                }
+                                if (arrStr1[0].contains("德州") || arrStr1[0].contains("莱芜") || arrStr1[0].contains("枣庄")) {
+                                    newStrShi = "承德";
+                                }
+                            }
+                            if (type == 1) {
+                                newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
+                                newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                                newStrShi = "";
+                                if (arrStr1[0].contains("山东")) {
+                                    newStrSheng = "河北";
+                                }
+                                if (arrStr1[0].contains("日照") || arrStr1[0].contains("济宁")) {
+                                    newStrShi = "衡水";
+                                }
+                                if (arrStr1[0].contains("济南") || arrStr1[0].contains("青岛")) {
+                                    newStrShi = "唐山";
+                                }
+                                if (arrStr1[0].contains("临沂") || arrStr1[0].contains("菏泽")) {
+                                    newStrShi = "保定";
+                                }
+                                if (arrStr1[0].contains("烟台") || arrStr1[0].contains("淄博")) {
+                                    newStrShi = "邯郸";
+                                }
+                                if (arrStr1[0].contains("泰安") || arrStr1[0].contains("潍坊")) {
+                                    newStrShi = "邢台";
+                                }
+                                if (arrStr1[0].contains("威海") || arrStr1[0].contains("滨州")) {
+                                    newStrShi = "沧州";
+                                }
+                                if (arrStr1[0].contains("东营") || arrStr1[0].contains("聊城")) {
+                                    newStrShi = "廊坊";
+                                }
+                                if (arrStr1[0].contains("德州") || arrStr1[0].contains("莱芜") || arrStr1[0].contains("枣庄")) {
+                                    newStrShi = "承德";
+                                }
+                            }
+                            if (type == 2) {
+                                newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                            }
+                            if (type == 3) {
+                                newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                            }
+                        } else {
+                            if (arrStr1xiaoqu[0].contains("山东")) tem = arrStr1xiaoqu[0].replace("山东", "河北");
+                            if (arrStr1xiaoqu[0].contains("日照")) tem = arrStr1xiaoqu[0].replace("日照", "衡水");
+                            if (arrStr1xiaoqu[0].contains("青岛")) tem = arrStr1xiaoqu[0].replace("青岛", "衡水");
+                            if (arrStr1xiaoqu[0].contains("济南")) tem = arrStr1xiaoqu[0].replace("济南", "唐山");
+                            if (arrStr1xiaoqu[0].contains("济宁")) tem = arrStr1xiaoqu[0].replace("济宁", "唐山");
+                            if (arrStr1xiaoqu[0].contains("临沂")) tem = arrStr1xiaoqu[0].replace("临沂", "保定");
+                            if (arrStr1xiaoqu[0].contains("菏泽")) tem = arrStr1xiaoqu[0].replace("菏泽", "保定");
+                            if (arrStr1xiaoqu[0].contains("烟台")) tem = arrStr1xiaoqu[0].replace("烟台", "邯郸");
+                            if (arrStr1xiaoqu[0].contains("淄博")) tem = arrStr1xiaoqu[0].replace("淄博", "邯郸");
+                            if (arrStr1xiaoqu[0].contains("泰安")) tem = arrStr1xiaoqu[0].replace("泰安", "邢台");
+                            if (arrStr1xiaoqu[0].contains("潍坊")) tem = arrStr1xiaoqu[0].replace("潍坊", "邢台");
+                            if (arrStr1xiaoqu[0].contains("威海")) tem = arrStr1xiaoqu[0].replace("威海", "沧州");
+                            if (arrStr1xiaoqu[0].contains("滨州")) tem = arrStr1xiaoqu[0].replace("滨州", "沧州");
+                            if (arrStr1xiaoqu[0].contains("东营")) tem = arrStr1xiaoqu[0].replace("东营", "廊坊");
+                            if (arrStr1xiaoqu[0].contains("聊城")) tem = arrStr1xiaoqu[0].replace("聊城", "廊坊");
+                            if (arrStr1xiaoqu[0].contains("德州")) tem = arrStr1xiaoqu[0].replace("德州", "承德");
+                            if (arrStr1xiaoqu[0].contains("莱芜")) tem = arrStr1xiaoqu[0].replace("莱芜", "承德");
+                            if (arrStr1xiaoqu[0].contains("枣庄")) tem = arrStr1xiaoqu[0].replace("枣庄", "承德");
                         }
-                        if (type == 2) {
-                            newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
+                        if (arrStr1xiaoqu.length >= 2) {
+                            str = tem + "小区" + arrStr1xiaoqu[1];
                         }
-                        if (type == 3) {
-                            newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
-                        }
-
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        return value;
                     }
-                    if (arrStr1xiaoqu.length >= 2) {
-                        str = tem + "小区" + arrStr1xiaoqu[1];
-                    }
-
                 } else {
                     try {
                         String[] arrStr1 = str.split("区");
@@ -454,6 +608,34 @@ public class SanFenGuiYuanQi {
                             newStrShi = ((String[]) shengTOshi.get(provinces[hash1 % provinces.length]))[hash1 % (((String[]) shengTOshi.get(provinces[hash1 % provinces.length])).length - 1)];
                             newStrQu = ((String[]) shiTOqu.get(newStrShi))[hash1 % (((String[]) shiTOqu.get(newStrShi)).length - 1)];
                             newStrShi = "";
+                            if (arrStr1[0].contains("山东")) {
+                                newStrSheng = "河北";
+                            }
+                            if (arrStr1[0].contains("日照") || arrStr1[0].contains("济宁")) {
+                                newStrShi = "衡水";
+                            }
+                            if (arrStr1[0].contains("济南") || arrStr1[0].contains("青岛")) {
+                                newStrShi = "唐山";
+                            }
+                            if (arrStr1[0].contains("临沂") || arrStr1[0].contains("菏泽")) {
+                                newStrShi = "保定";
+                            }
+                            if (arrStr1[0].contains("烟台") || arrStr1[0].contains("淄博")) {
+                                newStrShi = "邯郸";
+                            }
+                            if (arrStr1[0].contains("泰安") || arrStr1[0].contains("潍坊")) {
+                                newStrShi = "邢台";
+                            }
+                            if (arrStr1[0].contains("威海") || arrStr1[0].contains("滨州")) {
+                                newStrShi = "沧州";
+                            }
+                            if (arrStr1[0].contains("东营") || arrStr1[0].contains("聊城")) {
+                                newStrShi = "廊坊";
+                            }
+                            if (arrStr1[0].contains("德州") || arrStr1[0].contains("莱芜") || arrStr1[0].contains("枣庄")) {
+                                newStrShi = "承德";
+                            }
+
                         }
                         if (type == 1) {
                             newStrShi = ((String[]) shengTOshi.get(newStrSheng))[hash1 % (((String[]) shengTOshi.get(newStrSheng)).length - 1)];
@@ -490,19 +672,62 @@ public class SanFenGuiYuanQi {
             for (int i = 0; i < arrStr.length; i++) {
 
                 int temp = 0;
-            try {
-                for (int j = 0; j < noChange3.length; j++) {
-                    if (arrStr[i].contains(noChange3[j].substring(0,1)) && arrStr[i + 1].contains(noChange3[j].substring(1,2)) && arrStr[i + 2].contains(noChange3[j].substring(2,3))){
-                        i+=2;
-                        temp = 1;
-                        break;
-                    }
-                }
-            }catch (ArrayIndexOutOfBoundsException e){
-                i+=2;
-                continue;
-            }
                 try {
+                    for (int j = 0; j < noChange3.length; j++) {
+                        if (arrStr[i].contains(noChange3[j].substring(0,1)) && arrStr[i + 1].contains(noChange3[j].substring(1,2)) && arrStr[i + 2].contains(noChange3[j].substring(2,3))){
+                            i+=2;
+                            temp = 1;
+                            break;
+                        }
+                    }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    i+=2;
+                    continue;
+                }
+                try {
+                    for (int j = 0; j < change2.length; j++) {
+                        if (arrStr[i].contains(change2[j].substring(0, 1)) && arrStr[i + 1].contains(change2[j].substring(1, 2))) {
+                            if (arrStr[i].equals("山")) {
+                                arrStr[i] = "河";
+                                arrStr[i + 1] = "北";
+                            }
+                            if (arrStr[i].equals("日")||arrStr[i].equals("青")) {
+                                arrStr[i] = "衡";
+                                arrStr[i + 1] = "水";
+                            }
+                            if (arrStr[i].equals("济")) {
+                                arrStr[i] = "唐";
+                                arrStr[i + 1] = "山";
+                            }
+                            if (arrStr[i].equals("临")||arrStr[i].equals("菏")) {
+                                arrStr[i] = "保";
+                                arrStr[i + 1] = "定";
+                            }
+                            if (arrStr[i].equals("烟")||arrStr[i].equals("淄")) {
+                                arrStr[i] = "邯";
+                                arrStr[i + 1] = "郸";
+                            }
+                            if (arrStr[i].equals("泰")||arrStr[i].equals("潍")) {
+                                arrStr[i] = "邢";
+                                arrStr[i + 1] = "台";
+                            }
+                            if (arrStr[i].equals("威")||arrStr[i].equals("滨")) {
+                                arrStr[i] = "沧";
+                                arrStr[i + 1] = "州";
+                            }
+                            if (arrStr[i].equals("东")||arrStr[i].equals("聊")) {
+                                arrStr[i] = "廊";
+                                arrStr[i + 1] = "坊";
+                            }
+                            if (arrStr[i].equals("德")||arrStr[i].equals("莱")||arrStr[i].equals("枣")) {
+                                arrStr[i] = "承";
+                                arrStr[i + 1] = "德";
+                            }
+                            i += 1;
+                            temp = 1;
+                            break;
+                        }
+                    }
                     for (int j = 0; j < noChange2.length; j++) {
                         if (arrStr[i].contains(noChange2[j].substring(0, 1)) && arrStr[i + 1].contains(noChange2[j].substring(1, 2))) {
                             i += 1;
