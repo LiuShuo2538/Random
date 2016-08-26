@@ -33,5 +33,15 @@ public class Test {
         System.out.println(s13.getBytes().length);
         System.out.println(s123.getBytes().length);
 //        System.out.println(o);
+
+        Object o = null;
+        try {
+            o = NameENameCompositeFilterAlgorithm.getModelComName("南宁市金谷隆粮油购销有限公司　　　　　　　　　　　　　　元数据", null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(o);
+
+
     }
 }

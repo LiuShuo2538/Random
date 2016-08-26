@@ -1,17 +1,17 @@
-package version1;
+package com.wiseweb.algorithm;
 
 /**
  * 个人公司混合名过滤算法
  * Created by zhengbing on 2016/6/21.
+ * 08/16丰富词库
  */
 public class NameENameCompositeFilterAlgorithm {
 
-    public static Object getModelComName(Object value , Object key){
+    public static Object getModelComName(Object value , Object key) throws Exception{
 
-        //\u5224\u65AD\u53C2\u6570\u662F\u5426\u4E3Anull\u3001"null"\u3001"" ,\u4E3Atrue\u65F6\u4E0D\u505A\u5904\u7406
         if (value==null||value.equals("null")||value.equals("")) return "";
         String str = value+"";
-        str = str.replace(" ", "");
+        str = str.replaceAll("\\s*", "");
         str = str.replaceAll("\\u3000", "");
         int isSuangYin = 0;
         if (str.endsWith("\"")&&str.startsWith("\"")){
@@ -20,15 +20,13 @@ public class NameENameCompositeFilterAlgorithm {
         }
         if (str.length()<2)return value;
         String salt = key + "";
-        String saltok = salt.replace(" ", "");
-        //\u76D0\u503Chash
+        String saltok = salt.replaceAll("\\s*", "");
         int hashSalt = 0;
-
-        if (salt.length()<1){
-            //\u6CA1\u6709\u76D0\u503C
+        if (salt==null||salt.equals("null")||salt.equals("")){
         }else {
             hashSalt=Math.abs(saltok.hashCode());
         }
+
         if(str.contains("·")&& str.replace(" ", "").length()<3){
             return value;
         }
@@ -39,10 +37,10 @@ public class NameENameCompositeFilterAlgorithm {
                 "\u5357\u95E8", "\u547C\u5EF6", "\u5B50\u8F66", "\u989B\u5B59", "\u7AEF\u6728", "\u5DEB\u9A6C", "\u516C\u897F", "\u6F06\u96D5", "\u8F66\u6B63", "\u58E4\u9A77", "\u516C\u826F", "\u62D3\u8DCB", "\u5939\u8C37", "\u5BB0\u7236", "\u8C37\u6881", "\u6BB5\u5E72", "\u767E\u91CC", "\u4E1C\u90ED", "\u5FAE\u751F",
                 "\u6881\u4E18", "\u5DE6\u4E18", "\u4E1C\u95E8", "\u897F\u95E8", "\u5357\u5BAB", "\u7B2C\u4E94", "\u516C\u4EEA", "\u516C\u4E58", "\u592A\u53F2", "\u4EF2\u957F", "\u53D4\u5B59", "\u5C48\u7A81", "\u5C14\u6731", "\u4E1C\u4E61", "\u76F8\u91CC", "\u80E1\u6BCD", "\u53F8\u57CE", "\u5F20\u5ED6", "\u96CD\u95E8",
                 "\u6BCB\u4E18", "\u8D3A\u5170", "\u7DA6\u6BCB", "\u5C4B\u5E90", "\u72EC\u5B64", "\u5357\u90ED", "\u5317\u5BAB", "\u738B\u5B59"};
-        //598 \u767E\u5BB6\u59D3
+//598 \u767E\u5BB6\u59D3
         String[] laName= {"\u8D75","\u94B1","\u5B59","\u674E","\u5468","\u5434","\u90D1","\u738B","\u51AF","\u9648","\u848B","\u6C88","\u97E9","\u6768","\u6731","\u79E6","\u8BB8","\u4F55","\u5415","\u65BD","\u5F20","\u5B54","\u66F9","\u4E25","\u534E","\u91D1","\u9B4F","\u59DC","\u8C22","\u90B9","\u55BB","\u82CF","\u6F58","\u845B","\u8303","\u5F6D","\u9C81","\u97E6","\u9A6C","\u65B9","\u4EFB","\u8881","\u67F3","\u53F2","\u5510","\u8D39","\u859B","\u96F7","\u502A","\u6C64","\u7F57","\u5B89","\u5E38","\u4E50","\u4E8E","\u535E","\u9F50","\u4F0D","\u4F59","\u5143","\u987E","\u5B5F","\u5E73","\u9EC4","\u548C","\u7A46","\u8427","\u5C39","\u59DA","\u90B5","\u6C6A","\u6BDB","\u72C4","\u7C73","\u8D1D","\u660E","\u81E7","\u6210","\u6234","\u5B8B","\u8305","\u5E9E","\u718A","\u7EAA","\u8212","\u9879","\u795D","\u8463","\u6881","\u675C","\u962E","\u8D3E","\u6C5F","\u90ED","\u6797","\u949F","\u5F90","\u90B1","\u9AD8","\u590F","\u8521","\u7530","\u80E1","\u970D","\u5362","\u83AB","\u623F","\u7F2A","\u89E3","\u4E01","\u5BA3","\u9093","\u90C1","\u5355","\u676D","\u6D2A","\u5305","\u77F3","\u5D14","\u7A0B","\u9646","\u4E8E","\u66F2","\u5C01","\u7126","\u8C37","\u8F66","\u683E","\u7518","\u5218","\u53F6","\u5E78","\u53F8","\u767D","\u4E54","\u8C2D","\u7533","\u725B","\u5C1A","\u519C","\u6E29","\u5E84","\u67F4","\u960E","\u4E60","\u5411","\u53E4","\u5ED6","\u803F","\u6EE1","\u5DE9","\u66FE","\u5173","\u5CB3","\u695A","\u4F5F","\u9AD8","\u95E8"};
 
-        //\u540D\u5B57\u5E93
+//\u540D\u5B57\u5E93
         String[] fiName= {"\u7F08","\u6E38","\u6E29","\u9038","\u5D4B","\u77BB","\u989C","\u7F3A","\u6E0A","\u6696","\u6E05","\u89C5","\u89C2","\u5D27","\u9065","\u55BB","\u66F4","\u55A7","\u66F2","\u5D34","\u66FC","\u7F55","\u66F9","\u5D0E","\u817E","\u6E5B","\u77F3","\u5D07","\u559C","\u98DE","\u98D8","\u5584","\u77E5",
                 "\u5D16","\u98CE","\u77E9","\u9053","\u5578","\u5DE1","\u90A6","\u662D","\u771F","\u5DE7","\u6620","\u5DE8","\u6625","\u7F8E","\u90B5","\u7701","\u6631","\u7F9A","\u6EAA","\u6634","\u7F9E","\u6636","\u773A","\u660A","\u6E90","\u660E","\u660F","\u660C","\u7FA4","\u6602","\u6606","\u6619","\u661F",
                 "\u6613","\u7FBF","\u5546","\u5DDE","\u5DDD","\u7FBD","\u6615","\u6614","\u666F","\u6668","\u987A","\u7FC1","\u6664","\u9876","\u7FCE","\u9875","\u5531","\u7FD4","\u552F","\u6EE1","\u667A","\u5524","\u6674","\u90FD","\u81F4","\u664B","\u81F3","\u6643","\u5510","\u665F","\u897F","\u81E3","\u6656",
@@ -74,7 +72,7 @@ public class NameENameCompositeFilterAlgorithm {
                 "\u5A01","\u5A04","\u529F","\u8679","\u52AA","\u70C8","\u5A31","\u61FF","\u7855","\u52A0","\u52A1","\u864E","\u8654","\u7845","\u9769","\u52B2","\u52B1","\u70AC","\u9716","\u70AF","\u52C9","\u70AB","\u52CB","\u971C","\u52C7","\u9704","\u9F99","\u708E","\u5A77","\u7814","\u52E4","\u9F50","\u5217",
                 "\u6148","\u5219","\u521A","\u521B","\u521D","\u614E","\u707F","\u86CB","\u522B","\u5229","\u97F3","\u97F5","\u97F6","\u78CA","\u97EC","\u5236","\u97E6","\u524D","\u9F0E","\u610F","\u701A"};
 
-         /*  \u516C\u53F8\u540D */
+/*  \u516C\u53F8\u540D */
         String[] Surname= {"\u7F08","\u6E38","\u6E29","\u9038","\u5D4B","\u77BB","\u989C","\u7F3A","\u6E0A","\u6696","\u6E05","\u89C5","\u89C2","\u5D27","\u9065","\u55BB","\u66F4","\u55A7","\u66F2","\u5D34","\u66FC","\u7F55","\u66F9","\u5D0E","\u817E","\u6E5B","\u77F3","\u5D07","\u559C","\u98DE","\u98D8","\u5584","\u77E5",
                 "\u5D16","\u98CE","\u77E9","\u9053","\u5578","\u5DE1","\u90A6","\u662D","\u771F","\u5DE7","\u6620","\u5DE8","\u6625","\u7F8E","\u90B5","\u7701","\u6631","\u7F9A","\u6EAA","\u6634","\u7F9E","\u6636","\u773A","\u660A","\u6E90","\u660E","\u660F","\u660C","\u7FA4","\u6602","\u6606","\u6619","\u661F",
                 "\u6613","\u7FBF","\u5546","\u5DDE","\u5DDD","\u7FBD","\u6615","\u6614","\u666F","\u6668","\u987A","\u7FC1","\u6664","\u9876","\u7FCE","\u9875","\u5531","\u7FD4","\u552F","\u6EE1","\u667A","\u5524","\u6674","\u90FD","\u81F4","\u664B","\u81F3","\u6643","\u5510","\u665F","\u897F","\u81E3","\u6656",
@@ -106,22 +104,22 @@ public class NameENameCompositeFilterAlgorithm {
                 "\u5A01","\u5A04","\u529F","\u8679","\u52AA","\u70C8","\u5A31","\u61FF","\u7855","\u52A0","\u52A1","\u864E","\u8654","\u7845","\u9769","\u52B2","\u52B1","\u70AC","\u9716","\u70AF","\u52C9","\u70AB","\u52CB","\u971C","\u52C7","\u9704","\u9F99","\u708E","\u5A77","\u7814","\u52E4","\u9F50","\u5217",
                 "\u6148","\u5219","\u521A","\u521B","\u521D","\u614E","\u707F","\u86CB","\u522B","\u5229","\u97F3","\u97F5","\u97F6","\u78CA","\u97EC","\u5236","\u97E6","\u524D","\u9F0E","\u610F","\u701A"};
 
-        //\u9A8C\u8BC1\u662F\u5426\u6E05\u6D17\u7684\u6570\u7EC4
-        String[] noChange = {"\u4E2D\u5B66","\u78C1","\u5382","\u7ECF\u8425\u90E8","\u519C\u8D44\u5E97","\u9752\u94DC\u5CE1","\u81EA\u6CBB\u53BF","\u5185\u8499\u53E4","\u77F3\u5634\u5C71","\u52A0\u76DF\u5E97","\u8499\u53E4\u65CF","\u571F\u7279\u4EA7","\u526F\u98DF\u54C1","\u5408\u4F5C\u793E","\u6E05\u771F\u5BFA","\u4E92\u52A9\u793E","\u7AF9\u7EA4\u7EF4","\u6279\u53D1\u90E8","\u7ECF\u9500\u90E8","\u7535\u52A8\u8F66","\u4E2D\u5B66","\u5C0F\u5B66","\u5B66\u6821","\u9AD8\u4E2D","\u5927\u5B66","\u589E\u8865","\u4E2A\u4EBA","\u4EE3\u53D1","\u7535\u58F0","\u6D59\u6C5F","\u9488\u7EC7","\u7AE5\u88C5","\u65C5\u6E38","\u5851\u6599","\u56DE\u6536","\u5BBE\u9986","\u88C5\u9970","\u5DE5\u8D44","\u6280\u6821","\u52D8\u5BDF","\u5730\u8D28","\u4FDD\u9669","\u7269\u4E1A","\u5B89\u88C5","\u5B9E\u9A8C","\u7EBA\u7EC7","\u666F\u89C2","\u8D85\u5E02","\u5BBE\u9986","\u5546\u57CE","\u7535\u89C6","\u5EFA\u8BBE","\u5B81\u590F","\u6838\u7B97","\u6C7D\u8F66","\u6D41\u901A","\u6728\u4E1A","\u9910\u996E","\u5BB6\u79C1","\u519C\u6C11","\u9152\u5E97","\u6C34\u679C","\u5316\u5DE5","\u652F\u884C","\u94F6\u5DDD","\u7EF4\u4FEE","\u4EA4\u901A","\u53D1\u5C55","\u94F6\u884C","\u5668\u6750","\u5E02\u573A","\u5B9E\u4E1A","\u673A\u68B0","\u5DE5\u8D38","\u4E8C\u624B","\u6279\u53D1","\u98DF\u5802","\u8F66\u884C","\u96C6\u4E2D","\u673A\u7535","\u5BBF\u820D","\u5C0F\u989D","\u5927\u8857","\u7535\u5668","\u5236\u9020","\u56FA\u539F","\u5DE5\u7A0B","\u4E13\u4E1A","\u5E7C\u513F","\u519C\u573A","\u96C6\u56E2","\u7EFC\u5408","\u793E\u533A","\u79D1\u6280","\u74DC\u679C","\u6E05\u771F","\u7801\u5934","\u56ED\u533A","\u4F11\u95F2","\u7CAE\u6CB9","\u5546\u884C","\u7BA1\u7406","\u80A1\u4EFD","\u5546\u4E1A","\u6587\u5316","\u4F20\u64AD","\u4E2D\u536B","\u5E7F\u64AD","\u9152\u697C","\u5355\u5143","\u4E2D\u5FC3","\u5370\u5237","\u5F00\u53D1","\u9632\u6C34","\u5434\u5FE0","\u7535\u5B50","\u8D44\u91D1","\u5927\u4FEE","\u8D23\u4EFB","\u5EFA\u6750","\u5E55\u5899","\u5370\u52A1","\u533B\u7597","\u5609\u5174","\u519C\u6751","\u6709\u9650","\u7269\u8D44","\u5668\u68B0","\u73E0\u5B9D","\u7535\u529B","\u8D44\u4EA7","\u8D37\u6B3E","\u82D7\u6728","\u529E\u516C","\u670D\u88C5","\u670D\u52A1","\u82B1\u56ED","\u6751\u7EA7","\u79CD\u690D","\u516C\u53F8","\u884C\u653F","\u54A8\u8BE2","\u517B\u6B96","\u4FDD\u6D01","\u5C0F\u533A","\u8BBE\u5907","\u5929\u7A97","\u8857\u9053","\u56ED\u6797","\u516C\u8DEF","\u8282\u80FD","\u9500\u552E","\u8D38\u6613","\u5546\u8D38","\u8FDE\u9501","\u80F6\u7C98","\u5236\u54C1","\u8DEF\u6865","\u77FF\u4E1A","\u5357\u5BFA","\u5DE5\u4E1A","\u9676\u74F7","\u519C\u4E1A","\u679C\u852C"
+//\u9A8C\u8BC1\u662F\u5426\u6E05\u6D17\u7684\u6570\u7EC4
 
-
-        };
-        String[] noChange1 = {"\u5927","\u9644","\u5317","\u7AD9","\u5DE6","\u5C6F","\u574A","\u5DF7","\u57CE","\u7701","\u5382","\u56DB","\u4E61","\u4E5D","\u9662","\u8DEF","\u53BF","\u533A","\u56ED","\u5BA4","\u9547","\u9762","\u6865","\u580D","\u5C42","\u5185","\u5E62","\u6D32","\u5DDE","\u53A6","\u5BB6","\u697C","\u5357","\u4FA7","\u5E97","\u524D","\u90E8","\u5F04","\u65C1","\u7EC4","\u5E84","\u6D5C","\u5341","\u6237","\u4E2D","\u793E","\u8361","\u516B","\u5E02","\u961F","\u516D","\u680B","\u540E","\u4E94","\u4E1C","\u53F7","\u6751","\u53F3","\u7B2C","\u82D1","\u4E09","\u897F","\u5C0F","\u5EA7","\u73AF","\u5BFA","\u4E00","\u4E03","\u4E8C","\u53E3","\u59D4","\u9053", "F","~","\uFF01","@","#","\uFFE5","%","\u2026","^","\u2026\u2026","&","*","\uFF08","\uFF09","\u2014","\u2014","+","}","{","\uFF1A","\u201C","\u300B","\u300A","\uFF1F","-","(",")"
+        String[] noChange = {"\u8D22\u653F","\u9ED1\u9F99\u6C5F","\u5317\u4EAC", "\u5929\u6D25", "\u4E0A\u6D77", "\u91CD\u5E86", "\u6CB3\u5317", "\u5C71\u897F", "\u8FBD\u5B81", "\u5409\u6797",  "\u6C5F\u82CF", "\u6D59\u6C5F", "\u5B89\u5FBD", "\u798F\u5EFA", "\u6C5F\u897F", "\u6CB3\u5357", "\u6E56\u5317", "\u6E56\u5357", "\u5E7F\u4E1C", "\u6D77\u5357", "\u56DB\u5DDD", "\u8D35\u5DDE", "\u4E91\u5357", "\u9655\u897F", "\u7518\u8083", "\u9752\u6D77", "\u53F0\u6E7E", "\u5185\u8499", "\u5E7F\u897F", "\u897F\u85CF", "\u5B81\u590F", "\u65B0\u7586", "\u9999\u6E2F", "\u6FB3\u95E8","\u4E2D\u5B66","\u78C1","\u5382","\u7ECF\u8425\u90E8","\u519C\u8D44\u5E97","\u9752\u94DC\u5CE1","\u81EA\u6CBB\u53BF","\u5185\u8499\u53E4","\u77F3\u5634\u5C71","\u52A0\u76DF\u5E97","\u8499\u53E4\u65CF","\u571F\u7279\u4EA7","\u526F\u98DF\u54C1","\u5408\u4F5C\u793E","\u6E05\u771F\u5BFA","\u4E92\u52A9\u793E","\u7AF9\u7EA4\u7EF4","\u6279\u53D1\u90E8","\u7ECF\u9500\u90E8","\u7535\u52A8\u8F66","\u4E2D\u5B66","\u5C0F\u5B66","\u5B66\u6821","\u9AD8\u4E2D","\u5927\u5B66","\u589E\u8865","\u4E2A\u4EBA","\u4EE3\u53D1","\u7535\u58F0","\u6D59\u6C5F","\u9488\u7EC7","\u7AE5\u88C5","\u65C5\u6E38","\u5851\u6599","\u56DE\u6536","\u5BBE\u9986","\u88C5\u9970","\u5DE5\u8D44","\u6280\u6821","\u52D8\u5BDF","\u5730\u8D28","\u4FDD\u9669","\u7269\u4E1A","\u5B89\u88C5","\u5B9E\u9A8C","\u7EBA\u7EC7","\u666F\u89C2","\u8D85\u5E02","\u5BBE\u9986","\u5546\u57CE","\u7535\u89C6","\u5EFA\u8BBE","\u5B81\u590F","\u6838\u7B97","\u6C7D\u8F66","\u6D41\u901A","\u6728\u4E1A","\u9910\u996E","\u5BB6\u79C1","\u519C\u6C11","\u9152\u5E97","\u6C34\u679C","\u5316\u5DE5","\u652F\u884C","\u94F6\u5DDD","\u7EF4\u4FEE","\u4EA4\u901A","\u53D1\u5C55","\u94F6\u884C","\u5668\u6750","\u5E02\u573A","\u5B9E\u4E1A","\u673A\u68B0","\u5DE5\u8D38","\u4E8C\u624B","\u6279\u53D1","\u98DF\u5802","\u8F66\u884C","\u96C6\u4E2D","\u673A\u7535","\u5BBF\u820D","\u5C0F\u989D","\u5927\u8857","\u7535\u5668","\u5236\u9020","\u56FA\u539F","\u5DE5\u7A0B","\u4E13\u4E1A","\u5E7C\u513F","\u519C\u573A","\u96C6\u56E2","\u7EFC\u5408","\u793E\u533A","\u79D1\u6280","\u74DC\u679C","\u6E05\u771F","\u7801\u5934","\u56ED\u533A","\u4F11\u95F2","\u7CAE\u6CB9","\u5546\u884C","\u7BA1\u7406","\u80A1\u4EFD","\u5546\u4E1A","\u6587\u5316","\u4F20\u64AD","\u4E2D\u536B","\u5E7F\u64AD","\u9152\u697C","\u5355\u5143","\u4E2D\u5FC3","\u5370\u5237","\u5F00\u53D1","\u9632\u6C34","\u5434\u5FE0","\u7535\u5B50","\u8D44\u91D1","\u5927\u4FEE","\u8D23\u4EFB","\u5EFA\u6750","\u5E55\u5899","\u5370\u52A1","\u533B\u7597","\u5609\u5174","\u519C\u6751","\u6709\u9650","\u7269\u8D44","\u5668\u68B0","\u73E0\u5B9D","\u7535\u529B","\u8D44\u4EA7","\u8D37\u6B3E","\u82D7\u6728","\u529E\u516C","\u670D\u88C5","\u670D\u52A1","\u82B1\u56ED","\u6751\u7EA7","\u79CD\u690D","\u516C\u53F8","\u884C\u653F","\u54A8\u8BE2","\u517B\u6B96","\u4FDD\u6D01","\u5C0F\u533A","\u8BBE\u5907","\u5929\u7A97","\u8857\u9053","\u56ED\u6797","\u516C\u8DEF","\u8282\u80FD","\u9500\u552E","\u8D38\u6613","\u5546\u8D38","\u8FDE\u9501","\u80F6\u7C98","\u5236\u54C1","\u8DEF\u6865","\u77FF\u4E1A","\u5357\u5BFA","\u5DE5\u4E1A","\u9676\u74F7","\u519C\u4E1A","\u679C\u852C"
 
         };
-        String[] noChange2 = {"\u4E2D\u5B66","\u5C0F\u5B66","\u5B66\u6821","\u9AD8\u4E2D","\u5927\u5B66","\u589E\u8865","\u4E2A\u4EBA","\u4EE3\u53D1","\u7535\u58F0","\u6D59\u6C5F","\u9488\u7EC7","\u7AE5\u88C5","\u65C5\u6E38","\u5851\u6599","\u56DE\u6536","\u5BBE\u9986","\u88C5\u9970","\u5DE5\u8D44","\u6280\u6821","\u52D8\u5BDF","\u5730\u8D28","\u4FDD\u9669","\u7269\u4E1A","\u5B89\u88C5","\u5B9E\u9A8C","\u7EBA\u7EC7","\u666F\u89C2","\u8D85\u5E02","\u5BBE\u9986","\u5546\u57CE","\u7535\u89C6","\u5EFA\u8BBE","\u5B81\u590F","\u6838\u7B97","\u6C7D\u8F66","\u6D41\u901A","\u6728\u4E1A","\u9910\u996E","\u5BB6\u79C1","\u519C\u6C11","\u9152\u5E97","\u6C34\u679C","\u5316\u5DE5","\u652F\u884C","\u94F6\u5DDD","\u7EF4\u4FEE","\u4EA4\u901A","\u53D1\u5C55","\u94F6\u884C","\u5668\u6750","\u5E02\u573A","\u5B9E\u4E1A","\u673A\u68B0","\u5DE5\u8D38","\u4E8C\u624B","\u6279\u53D1","\u98DF\u5802","\u8F66\u884C","\u96C6\u4E2D","\u673A\u7535","\u5BBF\u820D","\u5C0F\u989D","\u5927\u8857","\u7535\u5668","\u5236\u9020","\u56FA\u539F","\u5DE5\u7A0B","\u4E13\u4E1A","\u5E7C\u513F","\u519C\u573A","\u96C6\u56E2","\u7EFC\u5408","\u793E\u533A","\u79D1\u6280","\u74DC\u679C","\u6E05\u771F","\u7801\u5934","\u56ED\u533A","\u4F11\u95F2","\u7CAE\u6CB9","\u5546\u884C","\u7BA1\u7406","\u80A1\u4EFD","\u5546\u4E1A","\u6587\u5316","\u4F20\u64AD","\u4E2D\u536B","\u5E7F\u64AD","\u9152\u697C","\u5355\u5143","\u4E2D\u5FC3","\u5370\u5237","\u5F00\u53D1","\u9632\u6C34","\u5434\u5FE0","\u7535\u5B50","\u8D44\u91D1","\u5927\u4FEE","\u8D23\u4EFB","\u5EFA\u6750","\u5E55\u5899","\u5370\u52A1","\u533B\u7597","\u5609\u5174","\u519C\u6751","\u6709\u9650","\u7269\u8D44","\u5668\u68B0","\u73E0\u5B9D","\u7535\u529B","\u8D44\u4EA7","\u8D37\u6B3E","\u82D7\u6728","\u529E\u516C","\u670D\u88C5","\u670D\u52A1","\u82B1\u56ED","\u6751\u7EA7","\u79CD\u690D","\u516C\u53F8","\u884C\u653F","\u54A8\u8BE2","\u517B\u6B96","\u4FDD\u6D01","\u5C0F\u533A","\u8BBE\u5907","\u5929\u7A97","\u8857\u9053","\u56ED\u6797","\u516C\u8DEF","\u8282\u80FD","\u9500\u552E","\u8D38\u6613","\u5546\u8D38","\u8FDE\u9501","\u80F6\u7C98","\u5236\u54C1","\u8DEF\u6865","\u77FF\u4E1A","\u5357\u5BFA","\u5DE5\u4E1A","\u9676\u74F7","\u519C\u4E1A","\u679C\u852C"
+        String[] noChange1 = {"\u5DE5","\u4E1A","\u5C40","\u79CD","\u5927","\u9644","\u5317","\u7AD9","\u5DE6","\u5C6F","\u574A","\u5DF7","\u57CE","\u7701","\u5382","\u56DB","\u4E61","\u4E5D","\u9662","\u8DEF","\u53BF","\u533A","\u56ED","\u5BA4","\u9547","\u9762","\u6865","\u580D","\u5C42","\u5185","\u5E62","\u6D32","\u5DDE","\u53A6","\u5BB6","\u697C","\u5357","\u4FA7","\u5E97","\u524D","\u90E8","\u5F04","\u65C1","\u7EC4","\u5E84","\u6D5C","\u5341","\u6237","\u4E2D","\u793E","\u8361","\u516B","\u5E02","\u961F","\u516D","\u680B","\u540E","\u4E94","\u4E1C","\u53F7","\u6751","\u53F3","\u7B2C","\u82D1","\u4E09","\u897F","\u5C0F","\u5EA7","\u73AF","\u5BFA","\u4E00","\u4E03","\u4E8C","\u53E3","\u59D4","\u9053", "F","~","\uFF01","@","#","\uFFE5","%","\u2026","^","\u2026\u2026","&","*","\uFF08","\uFF09","\u2014","\u2014","+","}","{","\uFF1A","\u201C","\u300B","\u300A","\uFF1F","-","(",")"
 
         };
-        String[] noChange3 = {"\u7ECF\u8425\u90E8","\u519C\u8D44\u5E97","\u9752\u94DC\u5CE1","\u81EA\u6CBB\u53BF","\u5185\u8499\u53E4","\u77F3\u5634\u5C71","\u52A0\u76DF\u5E97","\u8499\u53E4\u65CF","\u571F\u7279\u4EA7","\u526F\u98DF\u54C1","\u5408\u4F5C\u793E","\u6E05\u771F\u5BFA","\u4E92\u52A9\u793E","\u7AF9\u7EA4\u7EF4","\u6279\u53D1\u90E8","\u7ECF\u9500\u90E8","\u7535\u52A8\u8F66"};
+        String[] noChange2 = {"\u519C\u57A6","\u6C34\u7A3B","\u914D\u80A5","\u8054\u5408","\u5546\u4F1A","\u8D22\u653F","\u5BB6\u7535","\u6295\u8D44","\u5BCC\u6C11","\u7530\u56ED","\u4E94\u5E38","\u4E50\u5C71","\u81EA\u8D21","\u6CF8\u5DDE","\u96C5\u5B89","\u5B9C\u5BBE","\u8D44\u9633","\u7709\u5C71","\u8D35\u6E2F","\u7389\u6797","\u5317\u6D77","\u6F33\u5DDE","\u8861\u6C34","\u5ECA\u574A","\u627F\u5FB7","\u6E29\u5DDE","\u5B81\u6CE2","\u676D\u5DDE","\u53F0\u5DDE","\u5609\u5174","\u91D1\u534E","\u6E56\u5DDE","\u7ECD\u5174","\u821F\u5C71","\u4E3D\u6C34","\u8862\u5DDE","\u897F\u5B89","\u54B8\u9633","\u5B9D\u9E21","\u6C49\u4E2D","\u6E2D\u5357","\u5B89\u5EB7","\u6986\u6797","\u5546\u6D1B","\u5EF6\u5B89","\u94DC\u5DDD","\u6FEE\u9633","\u6CA7\u5DDE","\u5510\u5C71","\u4FDD\u5B9A","\u90AF\u90F8","\u90A2\u53F0","\u6F2F\u6CB3","\u8BB8\u660C","\u9E64\u58C1","\u6D4E\u6E90","\u957F\u6C99","\u90B5\u9633","\u5E38\u5FB7","\u8861\u9633","\u682A\u6D32","\u6E58\u6F6D","\u6C38\u5DDE","\u5CB3\u9633","\u6000\u5316","\u90F4\u5DDE","\u5A04\u5E95","\u76CA\u9633","\u53A6\u95E8","\u6CC9\u5DDE","\u798F\u5DDE","\u8386\u7530","\u5B81\u5FB7","\u4E09\u660E","\u5357\u5E73","\u9F99\u5CA9","\u5357\u5B81","\u5468\u53E3","\u5546\u4E18","\u5F00\u5C01","\u7126\u4F5C","\u66F2\u9756","\u4FDD\u5C71","\u7389\u6EAA","\u662D\u901A","\u5DF4\u4E2D","\u9042\u5B81","\u5185\u6C5F","\u67F3\u5DDE","\u6842\u6797","\u68A7\u5DDE","\u94A6\u5DDE","\u6765\u5BBE","\u6CB3\u6C60","\u767E\u8272","\u8D3A\u5DDE","\u5D07\u5DE6","\u829C\u6E56","\u5408\u80A5","\u516D\u5B89","\u5BBF\u5DDE","\u961C\u9633","\u5B89\u5E86","\u4E09\u4E9A","\u6D77\u53E3","\u743C\u6D77","\u6587\u660C","\u4E1C\u65B9","\u6210\u90FD","\u7EF5\u9633","\u5E7F\u5143","\u8FBE\u5DDE","\u5357\u5145","\u5FB7\u9633","\u5E7F\u5B89","\u9F50\u9F50","\u54C8\u5C14","\u868C\u57E0","\u6DEE\u5317","\u6DEE\u5357","\u5BA3\u57CE","\u9EC4\u5C71","\u94DC\u9675","\u4EB3\u5DDE","\u6C60\u5DDE","\u5DE2\u6E56","\u6EC1\u5DDE","\u5357\u660C","\u8D63\u5DDE","\u4E0A\u9976","\u5409\u5B89","\u4E5D\u6C5F","\u65B0\u4F59","\u629A\u5DDE","\u5B9C\u6625","\u9EC4\u5188","\u5B5D\u611F","\u5341\u5830","\u54B8\u5B81","\u9EC4\u77F3","\u4ED9\u6843","\u5929\u95E8","\u968F\u5DDE","\u8346\u95E8","\u6F5C\u6C5F","\u9102\u5DDE","\u592A\u539F","\u5927\u540C","\u8FD0\u57CE","\u957F\u6CBB","\u664B\u57CE","\u5FFB\u5DDE","\u4E34\u6C7E","\u5415\u6881","\u664B\u4E2D","\u9633\u6CC9","\u6714\u5DDE","\u5927\u8FDE","\u6C88\u9633","\u4E39\u4E1C","\u8FBD\u9633","\u5927\u5E86","\u9526\u5DDE","\u671D\u9633","\u8425\u53E3","\u978D\u5C71","\u629A\u987A","\u961C\u65B0","\u76D8\u9526","\u672C\u6EAA","\u840D\u4E61","\u9E70\u6F6D","\u6B66\u6C49","\u5B9C\u660C","\u8944\u6A0A","\u8346\u5DDE","\u94C1\u5CAD","\u53F0\u5317","\u9AD8\u96C4","\u53F0\u4E2D","\u65B0\u7AF9","\u57FA\u9686","\u53F0\u5357","\u5609\u4E49","\u5357\u901A","\u5E38\u5DDE","\u9547\u6C5F","\u626C\u5DDE","\u6DEE\u5B89","\u6CF0\u5DDE","\u5BBF\u8FC1","\u90D1\u5DDE","\u5357\u9633","\u65B0\u4E61","\u5B89\u9633","\u6D1B\u9633","\u4FE1\u9633","\u9E21\u897F","\u9ED1\u6CB3","\u7EE5\u5316","\u9E64\u5C97","\u4F0A\u6625","\u8D35\u9633","\u9075\u4E49","\u5B89\u987A","\u5170\u5DDE","\u5929\u6C34","\u5E86\u9633","\u6B66\u5A01","\u9152\u6CC9","\u5F20\u6396","\u767D\u94F6","\u5E73\u51C9","\u91D1\u660C","\u5409\u6797","\u957F\u6625","\u767D\u5C71","\u767D\u57CE","\u677E\u539F","\u8FBD\u6E90","\u901A\u5316","\u56DB\u5E73","\u94F6\u5DDD","\u5434\u5FE0","\u4E2D\u536B","\u56FA\u539F","\u9633\u6C5F","\u6885\u5DDE","\u4E91\u6D6E","\u8302\u540D","\u6C55\u5C3E","\u6D4E\u5357","\u9752\u5C9B","\u4E34\u6C82","\u6D4E\u5B81","\u83CF\u6CFD","\u70DF\u53F0","\u6DC4\u535A","\u6CF0\u5B89","\u6F4D\u574A","\u65E5\u7167","\u5A01\u6D77","\u6EE8\u5DDE","\u4E1C\u8425","\u804A\u57CE","\u5FB7\u5DDE","\u83B1\u829C","\u67A3\u5E84","\u82CF\u5DDE","\u5F90\u5DDE","\u76D0\u57CE","\u65E0\u9521","\u5357\u4EAC","\u4E1C\u839E","\u5E7F\u5DDE","\u4E2D\u5C71","\u6DF1\u5733","\u60E0\u5DDE","\u6C5F\u95E8","\u73E0\u6D77","\u6C55\u5934","\u4F5B\u5C71","\u6E5B\u6C5F","\u6CB3\u6E90","\u8087\u5E86","\u6E05\u8FDC","\u6F6E\u5DDE","\u97F6\u5173","\u63ED\u9633","\u8D22\u5BCC", "\u62C5\u4FDD","\u5317\u4EAC", "\u5929\u6D25", "\u4E0A\u6D77", "\u91CD\u5E86", "\u6CB3\u5317", "\u5C71\u897F", "\u8FBD\u5B81", "\u5409\u6797",  "\u6C5F\u82CF", "\u6D59\u6C5F", "\u5B89\u5FBD", "\u798F\u5EFA", "\u6C5F\u897F", "\u6CB3\u5357", "\u6E56\u5317", "\u6E56\u5357", "\u5E7F\u4E1C", "\u6D77\u5357", "\u56DB\u5DDD", "\u8D35\u5DDE", "\u4E91\u5357", "\u9655\u897F", "\u7518\u8083", "\u9752\u6D77", "\u53F0\u6E7E", "\u5185\u8499", "\u5E7F\u897F", "\u897F\u85CF", "\u5B81\u590F", "\u65B0\u7586", "\u9999\u6E2F", "\u6FB3\u95E8","\u4E2D\u5B66","\u5C0F\u5B66","\u5B66\u6821","\u9AD8\u4E2D","\u5927\u5B66","\u589E\u8865","\u4E2A\u4EBA","\u4EE3\u53D1","\u7535\u58F0","\u6D59\u6C5F","\u9488\u7EC7","\u7AE5\u88C5","\u65C5\u6E38","\u5851\u6599","\u56DE\u6536","\u5BBE\u9986","\u88C5\u9970","\u5DE5\u8D44","\u6280\u6821","\u52D8\u5BDF","\u5730\u8D28","\u4FDD\u9669","\u7269\u4E1A","\u5B89\u88C5","\u5B9E\u9A8C","\u7EBA\u7EC7","\u666F\u89C2","\u8D85\u5E02","\u5BBE\u9986","\u5546\u57CE","\u7535\u89C6","\u5EFA\u8BBE","\u5B81\u590F","\u6838\u7B97","\u6C7D\u8F66","\u6D41\u901A","\u6728\u4E1A","\u9910\u996E","\u5BB6\u79C1","\u519C\u6C11","\u9152\u5E97","\u6C34\u679C","\u5316\u5DE5","\u652F\u884C","\u94F6\u5DDD","\u7EF4\u4FEE","\u4EA4\u901A","\u53D1\u5C55","\u94F6\u884C","\u5668\u6750","\u5E02\u573A","\u5B9E\u4E1A","\u673A\u68B0","\u5DE5\u8D38","\u4E8C\u624B","\u6279\u53D1","\u98DF\u5802","\u8F66\u884C","\u96C6\u4E2D","\u673A\u7535","\u5BBF\u820D","\u5C0F\u989D","\u5927\u8857","\u7535\u5668","\u5236\u9020","\u56FA\u539F","\u5DE5\u7A0B","\u4E13\u4E1A","\u5E7C\u513F","\u519C\u573A","\u96C6\u56E2","\u7EFC\u5408","\u793E\u533A","\u79D1\u6280","\u74DC\u679C","\u6E05\u771F","\u7801\u5934","\u56ED\u533A","\u4F11\u95F2","\u7CAE\u6CB9","\u5546\u884C","\u7BA1\u7406","\u80A1\u4EFD","\u5546\u4E1A","\u6587\u5316","\u4F20\u64AD","\u4E2D\u536B","\u5E7F\u64AD","\u9152\u697C","\u5355\u5143","\u4E2D\u5FC3","\u5370\u5237","\u5F00\u53D1","\u9632\u6C34","\u5434\u5FE0","\u7535\u5B50","\u8D44\u91D1","\u5927\u4FEE","\u8D23\u4EFB","\u5EFA\u6750","\u5E55\u5899","\u5370\u52A1","\u533B\u7597","\u5609\u5174","\u519C\u6751","\u6709\u9650","\u7269\u8D44","\u5668\u68B0","\u73E0\u5B9D","\u7535\u529B","\u8D44\u4EA7","\u8D37\u6B3E","\u82D7\u6728","\u529E\u516C","\u670D\u88C5","\u670D\u52A1","\u82B1\u56ED","\u6751\u7EA7","\u79CD\u690D","\u516C\u53F8","\u884C\u653F","\u54A8\u8BE2","\u517B\u6B96","\u4FDD\u6D01","\u5C0F\u533A","\u8BBE\u5907","\u5929\u7A97","\u8857\u9053","\u56ED\u6797","\u516C\u8DEF","\u8282\u80FD","\u9500\u552E","\u8D38\u6613","\u5546\u8D38","\u8FDE\u9501","\u80F6\u7C98","\u5236\u54C1","\u8DEF\u6865","\u77FF\u4E1A","\u5357\u5BFA","\u5DE5\u4E1A","\u9676\u74F7","\u519C\u4E1A","\u679C\u852C"
+
+        };
+        String[] noChange3 = {"\u5E73\u9876\u5C71","\u9A7B\u9A6C\u5E97","\u4E09\u95E8\u5CE1","\u77F3\u5BB6\u5E84","\u6CB3\u5317\u533A","\u79E6\u7687\u5C9B","\u5F20\u5BB6\u53E3","\u9A6C\u978D\u5C71","\u846B\u82A6\u5C9B","\u54C8\u5C14\u6EE8","\u4F73\u6728\u65AF","\u53CC\u9E2D\u5C71","\u7261\u4E39\u6C5F","\u914D\u80A5\u7AD9","\u9ED1\u9F99\u6C5F","\u7ECF\u8425\u90E8","\u519C\u8D44\u5E97","\u9752\u94DC\u5CE1","\u81EA\u6CBB\u53BF","\u5185\u8499\u53E4","\u77F3\u5634\u5C71","\u8FDE\u4E91\u6E2F","\u52A0\u76DF\u5E97","\u8499\u53E4\u65CF","\u5EF6\u8FB9\u5DDE","\u77F3\u5634\u5C71","\u7518\u5357\u5DDE","\u571F\u7279\u4EA7","\u526F\u98DF\u54C1","\u5408\u4F5C\u793E","\u6E05\u771F\u5BFA","\u4E92\u52A9\u793E","\u7AF9\u7EA4\u7EF4","\u6279\u53D1\u90E8","\u7ECF\u9500\u90E8","\u7535\u52A8\u8F66"};
 
         String newName="";
 
-        //\u9A8C\u8BC1\u662F\u5426\u4E3A\u516C\u53F8 0 \u4EBA
+//\u9A8C\u8BC1\u662F\u516C\u53F8 \u4E3A1
         int company = 0;
 
         for (int i = 0; i < noChange.length; i++) {
@@ -139,6 +137,7 @@ public class NameENameCompositeFilterAlgorithm {
 
             for (int i = 0; i < arrStr.length; i++) {
                 int temp = 0;
+
                 try {
                     for (int j = 0; j < noChange3.length; j++) {
                         if (arrStr[i].contains(noChange3[j].substring(0, 1)) && arrStr[i + 1].contains(noChange3[j].substring(1, 2)) && arrStr[i + 2].contains(noChange3[j].substring(2, 3))) {
@@ -179,19 +178,31 @@ public class NameENameCompositeFilterAlgorithm {
             for (int i = 0; i < arrStr.length; i++) {
                 newName += arrStr[i];
             }
-            //--------------------------------------------------------return
-            if (isSuangYin == 1){
-                newName = "\"" + newName +"\"";
+//--------------------------------------------------------return
+
+            String s = newName;
+            String vLenth = value+"";
+            byte[] vLenthB = vLenth.getBytes("GBK");
+            byte[] sLenthB = s.getBytes("GBK");
+            int diff = 0;
+            if (vLenthB.length<sLenthB.length){
+                diff = ((sLenthB.length - vLenthB.length) / 2) + ((sLenthB.length - vLenthB.length) % 2);
+                s = s.substring(0,s.length()-diff);
             }
-            return newName;
+            if (vLenthB.length<s.getBytes("GBK").length) return new String(vLenth.getBytes("GBK"), "GBK");
+            if (isSuangYin == 1){
+                s = "\"" + s +"\"";
+            }
+            s =  new String(s.getBytes("GBK"), "GBK");
+
+            return s;
+
         }else{
-
-
-            //\u7279\u6B8A\u5B57\u7B26
+//\u7279\u6B8A\u5B57\u7B26
             boolean isSpecial = false;
-            //\u590D\u59D3
+//\u590D\u59D3
             boolean isTwoName = false;
-            //\u5C11\u6570\u6C11\u65CF
+//\u5C11\u6570\u6C11\u65CF
             boolean isRareName = false;
 
             String lastName = "";
@@ -200,7 +211,7 @@ public class NameENameCompositeFilterAlgorithm {
             int lastNameHashCode = 0;
             int firstNameHashCode = 0;
 
-            //\u5224\u65AD\u662F\u5426\u542B\u6709\u7279\u6B8A\u5B57\u7B26
+//\u5224\u65AD\u662F\u5426\u542B\u6709\u7279\u6B8A\u5B57\u7B26
             java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("[0-9]*[A-Za-z]*[`~!@#$%^&*()+=|{}':;',\\\\[\\\\].<>/?~\uFF01@#\uFFE5%\u2026\u2026&*\uFF08\uFF09\u2014\u2014+|{}\u3010\u3011\u2018\uFF1B\uFF1A\u201D\u201C\u2019\u3002\uFF0C\u3001\uFF1F]*");
             for (int i = 0; i < str.length(); i++) {
                 java.util.regex.Matcher matcher = pattern.matcher(str.substring(i, i + 1));
@@ -210,19 +221,19 @@ public class NameENameCompositeFilterAlgorithm {
                     break;
                 }
             }
-            //\u5224\u65AD\u662F\u5426\u662F\u590D\u59D3
+//\u5224\u65AD\u662F\u5426\u662F\u590D\u59D3
             for (int i = 0; i < contain.length; i++) {
                 if (str.contains(contain[i])) {
                     isTwoName = true;
                 }
             }
-            //\u5224\u65AD\u662F\u5426\u662F\u5C11\u6570\u6C11\u65CF\u201C·\u201D
+//\u5224\u65AD\u662F\u5426\u662F\u5C11\u6570\u6C11\u65CF\u201C·\u201D
             if (str.contains("·")) {
                 isRareName = true;
             }
-            //\u6B63\u5E38\u540D\u5B57
-            //\u590D\u59D3\u540D\u5B57
-            //\u5C11\u6570\u6C11\u65CF\u540D\u5B57
+//\u6B63\u5E38\u540D\u5B57
+//\u590D\u59D3\u540D\u5B57
+//\u5C11\u6570\u6C11\u65CF\u540D\u5B57
             if (!isSpecial) {
                 lastName = str.substring(0, 1);
                 firstName = str.substring(1, str.length());
@@ -241,7 +252,7 @@ public class NameENameCompositeFilterAlgorithm {
                     }
                 }
 
-                //\u5C11\u6570\u6C11\u65CF\u62FC\u65B0\u540D\u5B57
+//\u5C11\u6570\u6C11\u65CF\u62FC\u65B0\u540D\u5B57
                 if (isRareName) {
                     for (int i = 0; i < lastName.length(); i++) {
                         firstNameHashCode = Math.abs(lastName.substring(i, i + 1).hashCode() + hashSalt);
@@ -264,15 +275,15 @@ public class NameENameCompositeFilterAlgorithm {
                     }
                 }
             }
-            //\u6B63\u5E38\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
-            //\u590D\u59D3\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
-            //\u5C11\u6570\u6C11\u65CF\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
-            //\u5224\u65AD\u6C49\u5B57
+//\u6B63\u5E38\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
+//\u590D\u59D3\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
+//\u5C11\u6570\u6C11\u65CF\u540D\u5B57\u5E26\u7279\u6B8A\u5B57\u7B26
+//\u5224\u65AD\u6C49\u5B57
             java.util.regex.Pattern pattern1 = java.util.regex.Pattern.compile("[\\u4e00-\\u9fa5]");
 
             if (isSpecial) {
                 int temp = 0;
-                //\u6839\u636E\u4EE5\u4E0A\u5224\u65AD\u622A\u53D6\u6BCF\u4E2A\u5B57\u7B26\u653E\u5165\u6570\u7EC4
+//\u6839\u636E\u4EE5\u4E0A\u5224\u65AD\u622A\u53D6\u6BCF\u4E2A\u5B57\u7B26\u653E\u5165\u6570\u7EC4
                 String[] nameArray = new String[str.length()];
                 for (int i = 0; i < str.length(); i++) {
                     nameArray[i] = str.substring(i, i + 1);
@@ -335,18 +346,32 @@ public class NameENameCompositeFilterAlgorithm {
                     }
 
                 }
-                //\u751F\u6210String\u7C7B\u578B\u65B0\u540D\u5B57
+//\u751F\u6210String\u7C7B\u578B\u65B0\u540D\u5B57
                 newName = "";
                 for (int i = 0; i < nameArray.length; i++) {
                     newName += nameArray[i];
                 }
             }
-            //--------------------------------------------------------return
-            if (isSuangYin == 1){
-                newName = "\"" + newName +"\"";
+//--------------------------------------------------------return
+
+            String s = newName;
+            String vLenth = value+"";
+            byte[] vLenthB = vLenth.getBytes("GBK");
+            byte[] sLenthB = s.getBytes("GBK");
+            int diff = 0;
+            if (vLenthB.length<sLenthB.length){
+                diff = ((sLenthB.length - vLenthB.length) / 2) + ((sLenthB.length - vLenthB.length) % 2);
+                s = s.substring(0,s.length()-diff);
             }
-            return newName;
+            if (vLenthB.length<s.getBytes("GBK").length) return new String(vLenth.getBytes("GBK"), "GBK");
+            if (isSuangYin == 1){
+                s = "\"" + s +"\"";
+            }
+            s =  new String(s.getBytes("GBK"), "GBK");
+
+            return s;
         }
+
 
 
     }
