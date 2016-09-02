@@ -2,7 +2,10 @@ package version3;
 
 import version3.Birthday.Birthday;
 import version3.ID.ID;
+import version3.Licence.Licence;
 import version3.Name.Name;
+import version3.Organozation.Organization;
+import version3.Taxpayer.Taxpayer;
 import version3.Telephone.TelePhone;
 
 import java.util.regex.Matcher;
@@ -21,9 +24,12 @@ public class TestPublic {
 //        Object o = Birthday.getBirthday("\"1992/2/25\"", 77);
 //        Object o = Name.getModelComName("·啊实·啊实打=", 12);
 //        Object o = TelePhone.getModelTele("13630950849", null);
-        Object o = ID.getModelIDCard(220323199203080817L, null);
-
+//        Object o = ID.getModelIDCard(220323199203080817L, null);
+//        Object o = Licence.getModelLicence(123456789012345L, null);
+//        Object o = Organization.getModelGroupNum("12345678-9", null);
+        Object o = Taxpayer.getModelTaxNum(1234567890123456789L, null);
         System.out.println(o);
+
 
     }
 }
