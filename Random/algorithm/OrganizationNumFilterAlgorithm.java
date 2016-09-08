@@ -38,10 +38,6 @@ public class OrganizationNumFilterAlgorithm {
             str = str.replace("-","");
             isGangFuHao = 1;
         }
-        Random random = new Random(hashSalt);
-        String newStr1="";
-        String newStr2="";
-        String newStr3="";
         String newStr4="";
         String temp1to8="";
 
