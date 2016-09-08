@@ -1,7 +1,6 @@
 package version4;
 
-import java.util.HashSet;
-import java.util.Set;
+import ZhangXian.RandomNumber;
 
 /**
  * Created by ${LiuShuo} on 2016/9/6.
@@ -19,7 +18,11 @@ public class Test {
 
 //        String s = "123456789";
 //        System.out.println(s.indexOf("2"));
-        Object o = Temp.getModelTele("44105410",null);
+//        Object o = Temp.getModelTele("44105410",null);
+
+//        Object o = UnifyCode.getUC(121526004609138637L, null);
+
+        Object o = RandomNumber.getRN("123zbc-", null);
         System.out.println(o);
 
     }
